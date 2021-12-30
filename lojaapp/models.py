@@ -4,7 +4,7 @@ from django.db.models.manager import ManagerDescriptor
 
 
 class Cliente(models.Model):
-    user = models.OneToOneField()
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
     nome_completo = models.CharField(max_length=200)
     endereco = models.CharField(max_length=200, null=True, blank=True)
     data_on = models.DateTimeField(auto_now_add=True)
@@ -13,7 +13,7 @@ class Cliente(models.Model):
         return self.nome_completo
 
 
-class Categoria(models.Models):
+class Categoria(models.Model):
     titulo = models.CharField(max_length=200)
     slung = models.SlugField(unique=True)
     
@@ -29,6 +29,7 @@ class Produto(models.Model):
     venda = models.PositiveIntegerField()
     descricao = models.TextField()
     garantia = models.CharField(max_length=300,null=True, blank=True)
+    return_devolucao = models.CharField(max_length=300, null=True,blank=True)
     visualizacao = models.PositiveIntegerField(default=0)
     
     def __str__(self):
@@ -56,7 +57,7 @@ class CarroProduto(models.Model):
 PEDIDO_STATUS = (
     ("Pedido Recebido","Pedido Recebido"),
     ("Pedido Processando","Pedido Processando"),
-    ("Pedido a caminho","Pedido a caminho"),
+    ("Pedido a Caminho","Pedido a Caminho"),
     ("Pedido Completo","Pedido Completo"),
     ("Pedido Cancelado","Pedido Cancelado"),
 )   
@@ -69,9 +70,12 @@ class Pedido_order(models.Model):
     endereco_envio = models.CharField(max_length=200)
     telefone = models.CharField(max_length=11)
     email = models.EmailField(null=True, blank=True)
-    endereco_envio = models.models.CharField(max_length=200)
+    endereco_envio = models.CharField(max_length=200)
     subtotal = models.PositiveIntegerField()
     desconto = models.PositiveIntegerField()
     total = models.PositiveIntegerField()
     pedido_status = models.CharField(max_length=50,choices=PEDIDO_STATUS)
     criado_em = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return "Pedido_order:" + str(self.id)
