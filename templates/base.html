@@ -10,10 +10,10 @@
 </head>
 
 <body>
-    <a href="/">PAGINA HOME</a>
-    <a href="/sobre/">PAGINA SOBRE</a>
-    <a href="/contato/">PAGINA CONTATO</a>
-    <a href="/todos-produtos/">TODOS OS PROTUDOS</a>
+    <a href="{%url 'lojaapp:home' %}">HOME</a>
+    <a href="{%url 'lojaapp:sobre' %}">SOBRE</a>
+    <a href="{%url 'lojaapp:contato' %}">CONTATO</a>
+    <a href="{%url 'lojaapp:todosprodutos' %}">CATEGORIAS</a>
 <hr>
 {% block content %}
 
