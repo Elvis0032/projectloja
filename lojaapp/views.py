@@ -46,7 +46,7 @@ class AddCarroView(TemplateView):
         if carro_id:
 
             carro_obj = Carro.objects.get(id=carro_id)
-            produto_no_carro = carro_obj.carroproduto_set.filter(produto=produto_obj)
+            produto_no_carro = carro_obj.carroproduto_set.filter(total=produto_obj)
 
             if produto_no_carro.exists():
 
@@ -72,9 +72,18 @@ class AddCarroView(TemplateView):
         return context
 
 
+
+class MeuCarroView(TemplateView):
+    template_name = "meucarro.html"
+
+
+
+
 class SobreView(TemplateView):
     template_name = "sobre.html"
 
 
 class ContatoView(TemplateView):
     template_name = "contato.html"
+    
+    
