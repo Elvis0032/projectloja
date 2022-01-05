@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 {% block title %}Meu Carrinhho {% endblock %}
+
+
 {% block content %}
 
 <div class="container">
     <div class="row">
         <div class="col-md-8">
             <h4>ITENS DO CARINHO</h4>
-            <table>
+            <table class="table">
                 <thead>
                     <tr>
                         <th>Codigo</th>
@@ -17,10 +19,22 @@
                         <th>Acao</th>
                         
                     </tr>
-                    <tbody>
-
-                    </tbody>
                 </thead>
+                    <tbody>
+                        {% for cp in carro.carroproduto_set.all %}
+                         
+                        <tr>
+                            <td>{{ forloop.counter}}</td>
+                            <td>{{ cp.produto.titulo }}</td>
+                            <td>{{ cp.avaliacao }}</td>
+                            <td>{{ cp.quantidade }}</td>
+                            <td>{{ cp.subtotal }}</td>
+                            
+                        </tr>
+                        
+                        {% endfor %}
+                    </tbody>
+                
             </table>
         </div>
     </div>
