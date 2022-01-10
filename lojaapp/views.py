@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.shortcuts import render, redirect
+from django.views.generic import TemplateView, View
 from.models import *
 
 
@@ -70,6 +70,12 @@ class AddCarroView(TemplateView):
             carro_obj.total += produto_obj.venda
             carro_obj.save()
         return context
+
+
+class ManipularCarroView(TemplateView):
+    def get(self,request, *args, **kwargs):
+        
+        return redirect("lojaapp:meucarro")
 
 
 
